@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .card-img-top{
+            height: 150px;
+        }
+        .card-title,
+        .card-text{
+            height: 50px;
+            overflow: hidden;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="display-4 text-center my-3">Product List</h1>
+        <div class="row" id="data">
+
+        </div>
+    </div>
+    
+    <script>
+        let url = "https://dummyjson.com/products"
+        $.get(url, function(data, status){
+            // console.log(data);
+            let products = data.products;
+            let content = "";
+            for(let i=0; i<products.length; i++){
+                let name = products[i].title;
+                let img = products[i].images[0]
+                let desc = products[i].description;
+                let price = products[i].price;
+                console.log(name+" "+img+" "+desc+" "+price);
+                content += `
+                    <div class="col-sm-3 p-1">
+                        <div class="card">
+                        <img src="${img}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${name}</h5>
+                            <p class="card-text">${desc}</p>
+                            <p class="text-muted">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                ${price}</p>
+                            <a href="" class="btn btn-primary">Buy Now</a>
+                        </div>
+                        </div>
+                    </div>
+                `
+            }
+            $("#data").append(content);
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>
