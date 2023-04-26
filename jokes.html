@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes application</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<body>
+    <div style="text-align: center;">
+        <h1>Joke of the day</h1>
+        <p id="joke"></p>
+        <button id="get" style="text-decoration-color: blue;">Get Joke</button>
+        </div>
+        <script>
+            $("#get").click(function(){
+                let url="https://hindi-jokes-api.onrender.com/jokes?api_key=9485c7c3f87e0bc3fec39eec64a7"
+                $.get(url,function(data,status){
+              // console.log(data.jokeContent);
+               //console.log(status);
+               $("#joke").text(data.jokeContent);
+                })
+            })
+        </script>
+</body>
+</head>
+<body>
+    
+</body>
+</html>
